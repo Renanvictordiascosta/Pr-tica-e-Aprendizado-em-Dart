@@ -37,13 +37,45 @@ void main () {
         
     }
 
-    stdout.write("Idade: ");
-    stdout.write(idade);
+    List <dynamic> pessoas = [];
+
+    while (registro <= 1000) {
+
+        String nome_pessoa = "${primeiro_nome[random.nextInt(primeiro_nome.length)]}" + " " + "${sobrenome[random.nextInt(sobrenome.length)]}";
+        
+        int idade_pessoa = idade[random.nextInt(idade.length)];
+
+        String estado_civil_pessoa = estado_civil[random.nextInt(estado_civil.length)]; 
+
+        dynamic peso_pessoa = peso[random.nextInt(peso.length)];
+        peso_pessoa = peso_pessoa.toStringAsFixed(2);
+        peso_pessoa = double.parse(peso_pessoa);
+
+        dynamic altura_pessoa = altura[random.nextInt(altura.length)];
+        altura_pessoa = altura_pessoa.toStringAsFixed(2);
+        altura_pessoa = double.parse(altura_pessoa);
+
+        dynamic imc_pessoa = (peso_pessoa) / (altura_pessoa * altura_pessoa);
+        imc_pessoa = imc_pessoa.toStringAsFixed(2);
+        imc_pessoa = double.parse(imc_pessoa);
+        
+        Map <String, dynamic> pessoa = {
+            
+            "Nome" : nome_pessoa,
+            "Idade" : idade_pessoa,
+            "Estado Civil" : estado_civil_pessoa,
+            "Peso (Kg)" : peso_pessoa,
+            "Altura (Metros)" : altura_pessoa,
+            "IMC" : imc_pessoa
+            
+        };
+        
+        pessoas.add(pessoa);
+        
+        registro = registro + 1;
+        
+    }
     
-    stdout.write("\n\n\nAltura: ");
-    stdout.write(altura);
-    
-    stdout.write("\n\n\nPeso: ");
-    stdout.write(peso);
+    stdout.write("Banco de Dados das Pessoas Geradas: ${pessoas}");
     
 }
