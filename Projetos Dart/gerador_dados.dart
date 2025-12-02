@@ -1,8 +1,10 @@
+// Bibliotecas importadas
 import 'dart:math';
 import 'dart:io';
 
 void main () {
     
+    // Declaraçao de variáveis excenciais e listas
     var random = Random();
     
     int registro = 0;
@@ -19,46 +21,58 @@ void main () {
     
     List <double> peso = [];
     
+    // Preenchimento da lista de idade
     for (int i = 18; i <= 85; i++) {
         
         idade.add(i);
         
     }
     
+    // Preenchimento da lista de alturas
     for (double j = 1.50; j <= 2.10; j += 0.01) {
         
         altura.add(j);
         
     }
     
+    // Preenchimento da lista de pesos
     for (double j = 50; j <= 150; j += 0.01) {
         
         peso.add(j);
         
     }
 
+    // Lista da base de dados das pessoas
     List <dynamic> pessoas = [];
 
+    // Loop para criação dos dados sintéticos
     while (registro <= 1000) {
 
+        // Criação do nome da pessoa
         String nome_pessoa = "${primeiro_nome[random.nextInt(primeiro_nome.length)]}" + " " + "${sobrenome[random.nextInt(sobrenome.length)]}";
         
+        // Criação da idade da pessoa
         int idade_pessoa = idade[random.nextInt(idade.length)];
 
+        // Criação do estado civil da pessoa
         String estado_civil_pessoa = estado_civil[random.nextInt(estado_civil.length)]; 
 
+        // Criação e tratamento do peso da pessoa
         dynamic peso_pessoa = peso[random.nextInt(peso.length)];
         peso_pessoa = peso_pessoa.toStringAsFixed(2);
         peso_pessoa = double.parse(peso_pessoa);
 
+        // Criação e tratamento da altura da pessoa
         dynamic altura_pessoa = altura[random.nextInt(altura.length)];
         altura_pessoa = altura_pessoa.toStringAsFixed(2);
         altura_pessoa = double.parse(altura_pessoa);
 
+        // Cálculo do imc com base nos valores criados de peso e altura, logo seguido do tratamento
         dynamic imc_pessoa = (peso_pessoa) / (altura_pessoa * altura_pessoa);
         imc_pessoa = imc_pessoa.toStringAsFixed(2);
         imc_pessoa = double.parse(imc_pessoa);
         
+        // Criação das informaçoes sintéticas de uma pessoa
         Map <String, dynamic> pessoa = {
             
             "Nome" : nome_pessoa,
@@ -70,12 +84,14 @@ void main () {
             
         };
         
+        // Adicionamento dos dados individuais na lista
         pessoas.add(pessoa);
         
         registro = registro + 1;
         
     }
     
+    // Demonstração de como ficou a base de dados
     stdout.write("Banco de Dados das Pessoas Geradas: ${pessoas}");
     
 }
